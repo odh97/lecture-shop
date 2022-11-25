@@ -9,7 +9,15 @@ import 작명2 from './data/test2';
 import data from './data/data';
 //라우터 사용법
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
+//스타일드 사용법
+import styled from 'styled-components';
 
+let YellowBtn = styled.button`
+  background: ${props => props.bg};
+  color : ${props => props.bg == 'blue' ? 'white' : 'black'};
+  padding : 10px;
+`
+let NewBtn = styled.button(YellowBtn);
 
 function App() {
 
@@ -17,7 +25,7 @@ function App() {
   let navigate = useNavigate();
 
   
-  function SortFn(){
+  function sortFn(){
     let shoesCopy = [...shoes];
     shoesCopy.sort(function(a, b){
       return a.title > b.title ? 1: -1;
@@ -29,6 +37,9 @@ function App() {
   return (
     <div className="App">
 
+      <YellowBtn bg="blue">얼탱이가 없네 이렇게 왜 만듬</YellowBtn>
+      <YellowBtn bg="yellow">어 생각보다 괜찮은데?</YellowBtn>
+
       <nav>
         <Navbar bg="dark" variant="dark">
           <Container>
@@ -36,7 +47,7 @@ function App() {
             <Nav className="me-auto">
               <Nav.Link onClick={()=>{navigate('/')}}>Home</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/about')}}>About</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('/detail')}}>Detail</Nav.Link>
+              <Nav.Link onClick={()=>{navigate('/detail/0')}}>Detail</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/event')}}>Event</Nav.Link>
             </Nav>
           </Container>
@@ -59,7 +70,7 @@ function App() {
                 })}
               </section>
             </main>
-            <Button variant="primary" className='SortBtn' onClick={SortFn}>버튼 디자인 가져오기</Button>{' '}
+            <Button variant="primary" className='SortBtn' onClick={sortFn}>이름순으로 정렬</Button>{' '}
           </>
         } />
         <Route path='/detail/:id' element={<Detail shoes={shoes} />}/>
