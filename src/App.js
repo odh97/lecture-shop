@@ -37,8 +37,8 @@ function App() {
   return (
     <div className="App">
 
-      <YellowBtn bg="blue">얼탱이가 없네 이렇게 왜 만듬</YellowBtn>
-      <YellowBtn bg="yellow">어 생각보다 괜찮은데?</YellowBtn>
+      <YellowBtn bg="blue">스타일드 사용 해보기 A</YellowBtn>
+      <YellowBtn bg="yellow">스타일드 사용해보기 B</YellowBtn>
 
       <nav>
         <Navbar bg="dark" variant="dark">
