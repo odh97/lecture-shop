@@ -27,6 +27,41 @@
   width: 100%;
   object-fit: cover;
 }
-.SortBtn{
+.sortBtn{
   margin-top: 50px;
+}
+.styledBox{
+  margin-top: 50px;
+  width: 100%;
+}
+.linkNav{
+  text-align: left;
+  background: rgb(103, 103, 103);
+  height: 50px;
+}
+.linkNav > span{
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  text-indent: 50px;
+  line-height: 50px;
+}
+.linkNav > a{
+  font-size: 16px;
+  display: inline-block;
+  margin-left: 20px;
+  color: #fff;
+  text-decoration: none;
+  line-height: 50px;
+}
+#saleBtn{
+  margin: 10px auto;
+  width: 70%;
+  height: 80px;
+  font-size: 18px;
+  line-height: 80px;
+  font-weight: 600;
+  background-color: rgb(245, 255, 111);
+  border-radius: 5px;
 }

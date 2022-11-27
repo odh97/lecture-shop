@@ -57,26 +57,40 @@ const Detail = (props)=>{
 
 
 
+
+
   //클릭 이벤트
-  let [count, setCount] = useState(0);
   let [sale, setSale] = useState(true);
 
   //삼항 연산자를 이용한 타임 이벤트 박스
   useEffect(()=>{
   let resetTime =  setTimeout(()=>{setSale(false);}, 2000);
-  console.log(2);
   return()=>{
-    console.log(1);
     clearTimeout(resetTime);
   }
   });
 
+  
+  let val1 = "";  
+  let re1 = "";
+  let obj1 = "";
+  let[inputVal, setInputVal]=useState("");
 
+  useEffect(()=>{
+    function SetNum(obj){
+      val1 = obj.value;
+       re1 = /[^0-9]/gi;
+      obj1.value = val1.replace(re1,""); 
+    }
+    
+    if(1>2){
+
+    }
+  }, [inputVal])
 
   return(
     <>
-    <button onClick={()=>{setCount(count+1)}}>{count}리렌더링 테스트</button>
-      {sale === true ? <div id="saleBtn">2초 안에 누르면 할인!!</div> : null}
+      {sale === true ? <div id="saleBtn">2초 안에 누르면 할인!!!</div> : null}
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -89,10 +103,11 @@ const Detail = (props)=>{
             <button className="btn btn-danger">주문하기</button>
           </div>
         </div>
+        <input type={"text"} />
       </div>
-    </> 
+      <input TYPE={"text"} NAME={"test"} value={""} onKeyPress={"SetNum(this)"} onKeyUp={"SetNum(this)"} />
+    </>
     )
-    
 }
 
 

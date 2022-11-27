@@ -36,10 +36,6 @@ function App() {
   
   return (
     <div className="App">
-
-      <YellowBtn bg="blue">스타일드 사용 해보기 A</YellowBtn>
-      <YellowBtn bg="yellow">스타일드 사용해보기 B</YellowBtn>
-
       <nav>
         <Navbar bg="dark" variant="dark">
           <Container>
@@ -53,10 +49,11 @@ function App() {
           </Container>
         </Navbar>
       </nav>
-
-      <Link to="/">홈</Link>
-      <Link to="/detail">상세페이지</Link>
-
+      <div className='linkNav'>
+        <span>Link Nav</span>
+        <Link to="/">Home</Link>
+        <Link to="/detail/0">상세페이지</Link>
+      </div>
       <Routes>
         <Route path='/' element={
           <>
@@ -70,7 +67,12 @@ function App() {
                 })}
               </section>
             </main>
-            <Button variant="primary" className='SortBtn' onClick={sortFn}>이름순으로 정렬</Button>{' '}
+            <Button variant="primary" className='sortBtn' onClick={sortFn}>이름순으로 정렬</Button>{' '}
+            {/* 스타일드 적용 */}
+            <div className='styledBox'>
+              <YellowBtn bg="blue">스타일드 사용 해보기 A</YellowBtn>
+              <YellowBtn bg="yellow">스타일드 사용해보기 B</YellowBtn>
+            </div>
           </>
         } />
         <Route path='/detail/:id' element={<Detail shoes={shoes} />}/>
