@@ -55,11 +55,6 @@ const Detail = (props)=>{
   //   }, 2000);
   // }, [count]);
 
-
-
-
-
-  //클릭 이벤트
   let [sale, setSale] = useState(true);
 
   //삼항 연산자를 이용한 타임 이벤트 박스
@@ -70,23 +65,33 @@ const Detail = (props)=>{
   }
   });
 
-  
-  let val1 = "";  
-  let re1 = "";
-  let obj1 = "";
-  let[inputVal, setInputVal]=useState("");
+  //인풋 값 필터
+  let [inputVal, setInputVal] = useState(null);
+  const regexr = /^\d+$/;
 
   useEffect(()=>{
-    function SetNum(obj){
-      val1 = obj.value;
-       re1 = /[^0-9]/gi;
-      obj1.value = val1.replace(re1,""); 
-    }
-    
-    if(1>2){
 
+    //내가 만든 인풋 값 필터
+    // if(regexr.test(inputVal) != true && !inputVal == ""){
+    //   let copy = inputVal;
+    //   let filtCopy = copy.replace(filterNm, "");
+
+    //   document.getElementById("purchInput").value = filtCopy;
+    //   setInputVal(filtCopy);
+    //   alert("숫자만 입력해주세요.");
+    // }
+
+    if(isNaN(inputVal) == true){
+      let copy = inputVal;
+      let filtCopy = copy.replace(filterNm, "");
+
+      document.getElementById("purchInput").value = filtCopy;
+      setInputVal(filtCopy);
+      alert("숫자만 입력해주세요.");
     }
-  }, [inputVal])
+
+  }, [inputVal]);
+
 
   return(
     <>
@@ -103,9 +108,8 @@ const Detail = (props)=>{
             <button className="btn btn-danger">주문하기</button>
           </div>
         </div>
-        <input type={"text"} />
+        <input id="purchInput" placeholder= {"금액을 적어주세요"} type={"text"} onChange={(e)=>{setInputVal(e.target.value);}} />
       </div>
-      <input TYPE={"text"} NAME={"test"} value={""} onKeyPress={"SetNum(this)"} onKeyUp={"SetNum(this)"} />
     </>
     )
 }

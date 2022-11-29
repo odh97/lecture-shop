@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연습장</title>
+<script>
+// filter() 함수는 특정 조건에 맞는 값들을 모두 걸러준다.
+// find() 함수는 특정 조건에 맞는 값이 나오는 첫번째 요소 값만 걸러내준다.
+
+//filter() 구성
+//arr.filter(callback(element[, index[, array]])[, thisArg])
+
+const arr1 = [10, 20, 30, 40, 50];
+
+//값이 30 이상인 값 구하기
+const result1 = arr1.filter(item => item>30);
+console.log(result1); // [40, 50]
+
+//값이 40 인 값 구하기
+const result2 = arr1.filter(item => item === 40);
+console.log(result2); // [40]
+
+//값이 30 이 아닌 값들 구하기
+const result3 = arr1.filter(item => item !== 30);
+console.log(result3); // [10, 20, 40, 50]
+
+
+//find() 구성
+//arr.find(callback[, thisArg])
+const arr2 = [10, 20, 30, 40, 50];
+
+//30 이상인 값 - find() 사용
+const result4 = arr2.find(item => item>30);
+console.log("find() 사용");
+console.log(result4); // 40 
+
+//30 이상인 값 - filter() 사용
+const result5 = arr2.filter(item => item>30);
+console.log("\nfilter() 사용");
+console.log(result5); // [40, 50]
+
+
+
+</script>
+</head>
+<body>
+    <h1>연습장</h1>
+</body>
+</html>

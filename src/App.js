@@ -23,7 +23,6 @@ function App() {
 
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
-
   
   function sortFn(){
     let shoesCopy = [...shoes];
