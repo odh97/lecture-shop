@@ -27,9 +27,7 @@
   width: 100%;
   object-fit: cover;
 }
-.sortBtn{
-  margin-top: 50px;
-}
+
 .styledBox{
   margin-top: 50px;
   width: 100%;
@@ -64,4 +62,13 @@
   font-weight: 600;
   background-color: rgb(245, 255, 111);
   border-radius: 5px;
+}
+.cmnBtn{
+  margin-left: 20px;
+  margin-top: 50px;
+  padding: 5px 12px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  background: rgb(94, 94, 94);
 }
