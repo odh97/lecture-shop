@@ -1,30 +1,42 @@
 .App {
   text-align: center;
+  padding-bottom: 500px;
 }
 
-/* main{width: 100%;height: 100%;} */
+/* animation */
+.start{
+  opacity: 0;
+}
+.end{
+  opacity: 1;
+  transition: opacity 1s;
+}
 
+
+/* css */
 .mainBg{
   height: 500px;
   background-position: center;
   background-size: cover;
 }
 .product-list{
-  margin: 50px auto 0;
+  margin: 0 auto;
   width: 85%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .product-item{
-  background-color: rgb(238, 238, 238);
-  border-radius: 20px;
+  margin-top: 50px;
   width: 30%;
   height: 100%;
+  background-color: rgb(238, 238, 238);
+  border-radius: 20px;
   box-shadow: 10px 10px 10px rgb(211, 211, 211);
 }
 .product-item > img{
-  border-radius: 20px;
   width: 100%;
+  border-radius: 20px;
   object-fit: cover;
 }
 
@@ -53,6 +65,9 @@
   text-decoration: none;
   line-height: 50px;
 }
+#purchInput{
+  margin-bottom: 20px;
+}
 #saleBtn{
   margin: 10px auto;
   width: 70%;
@@ -71,4 +86,25 @@
   border: none;
   border-radius: 5px;
   background: rgb(94, 94, 94);
+}
+.Loadingbar{
+  position:fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.386);
+}
+.Loadingbar span{
+  position: absolute;
+  left: calc(50% - 70px);
+  top: calc(50% - 70px);
+  line-height: 140px;
+  display: block;
+  width: 140px;
+  height: 140px;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 10px;
+  background: rgb(123, 123, 123);
 }
