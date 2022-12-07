@@ -6,6 +6,8 @@ import bannerBg from './img/bgimg.png';
 import Detail from './routes/Detail.js';
 import AxiosCp from './routes/AxiosCp';
 import StyledCp from './StyledCp';
+import CartCp from './routes/CartCp';
+import Effect from './Effect.js'
 import {DscrpTab, QandATab, ReviewTab} from './routes/DetailTabList';
 // export 사용
 import {a, b} from './data/test.js';
@@ -15,6 +17,7 @@ import data from './data/data';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
 // axios 사용법
 import axios from 'axios';
+import { Effect } from './Effect';
 
 //state보관함
 export let Context1 = createContext();
@@ -84,6 +87,7 @@ function App() {
               <Nav.Link onClick={()=>{navigate('/event')}}>Event</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/styled')}}>Styled</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/axios')}}>Axios</Nav.Link>
+              <Nav.Link onClick={()=>{navigate('/useEffect')}}>useEffect</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -112,6 +116,8 @@ function App() {
           </>
         } />
           <Route path='/detail/:id' element={<Context1.Provider value={{stock, shoes}}> <Detail shoes={shoes} /> </Context1.Provider>}>
+            <Route path='cart' element={<CartCp/>} />
+
             <Route path='dscrp' element={<DscrpTab/>}/>
             <Route path='Q&ATab' element={<QandATab/>}/>
             <Route path='reviewTab' element={<ReviewTab/>}/>
@@ -125,6 +131,7 @@ function App() {
         </Route>
         <Route path='/styled' element={<StyledCp />}/>
         <Route path='/axios' element={<AxiosCp />}/>
+        <Route path='/useEffect' element={<Effect />}/>
         <Route path='*' element={<><h1>404</h1><div>없는페이지에요~</div></>}/>
       </Routes>
     </div>
