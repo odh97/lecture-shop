@@ -17,7 +17,6 @@ import data from './data/data';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
 // axios 사용법
 import axios from 'axios';
-import { Effect } from './Effect';
 
 //state보관함
 export let Context1 = createContext();
@@ -45,6 +44,7 @@ function App() {
 
     axios.get('https://codingapple1.github.io/shop/data'+dataNm+'.json')
     .then((result)=>{
+
       // 내가 만든 방식
       // let shoesCopy = [...shoes];
       // for(let item in result.data){

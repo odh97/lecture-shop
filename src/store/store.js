@@ -1,4 +1,4 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+import { configureStore, createSlice, current } from '@reduxjs/toolkit'
 import user from './user';
 
 //Redux 사용 이유
@@ -18,10 +18,28 @@ let product = createSlice({
              return val.count += 1;
             }
           })
+        },
+        addPrdc(props, action){
+
+          let dataEx = true;
+          for(let i=0; i < props.length; i++){
+            if(props[i].id === action.payload.id){
+              dataEx = false;
+              break;
+            }
+          }
+          
+          if(dataEx === true){
+            props.push(action.payload);
+          }
+          if(dataEx === false){
+            alert("해당 상품이 담겨져있습니다.");
+          }
+          
         }
     }
 });
-export let {changePrdc} = product.actions;
+export let {changePrdc, addPrdc} = product.actions;
 
 export default configureStore({
   reducer: {

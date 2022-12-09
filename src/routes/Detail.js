@@ -1,13 +1,15 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Nav } from 'react-bootstrap';
+import { useDispatch } from "react-redux";
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { Context1 } from "../App";
-
+import { addPrdc } from "../store/store";
 
 const Detail = (props)=>{
 
   let navigate = useNavigate();
+  let dispatch = useDispatch();
   let {id} = useParams();
   
   // 숫자 필터
@@ -28,6 +30,11 @@ const Detail = (props)=>{
       PropsData = props.shoes[i];
     }
   }
+
+
+  //Redux 이용
+  //store 장바구니 추가 기능
+  let storeAddData = {id : PropsData.id, name : PropsData.title, count : 0 };
 
   //내가 만든 타임 이벤트 박스
   // useEffect(()=>{
@@ -96,7 +103,7 @@ const Detail = (props)=>{
             <div>
               <input id="purchInput" placeholder= {"금액을 적어주세요"} type={"text"} onChange={(e)=>{setInputVal(e.target.value);}} />
             </div>
-            <button className="btn btn-danger">주문하기</button>
+            <button className="btn btn-danger" onClick={()=>{ dispatch(addPrdc(storeAddData)) }}>주문하기</button>
           </div>
         </div>      
       </div>

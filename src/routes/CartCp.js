@@ -32,7 +32,7 @@ function CartCp() {
           return(
             <tr key={index}>
               <td>{value.id}</td>
-              <td>{value.name}</td>
+              <td>{value.name || value.title}</td>
               <td>{value.count}</td>
               <td><button onClick={()=>{ dispatch(changePrdc(value.id)) }}>버튼</button></td>
             </tr>
