@@ -17,14 +17,14 @@ function CartCp() {
     <>
     <h6>이름 : {stateRd.user.name}</h6>
     <h6>나이 : {stateRd.user.age}</h6>
-    <button onClick={()=>{dispatch(changeAge(100))}}>나이 버튼</button>
+    <button onClick={()=>{dispatch(changeAge(123))}}>나이 버튼</button>
     <Table>
     <thead>
         <tr>
         <th>#</th>
         <th>상품명</th>
         <th>수량</th>
-        <th>변경하기</th>
+        <th>추가</th>
         </tr>
     </thead>
     <tbody>
@@ -32,9 +32,9 @@ function CartCp() {
           return(
             <tr key={index}>
               <td>{value.id}</td>
-              <td>{value.name || value.title}</td>
+              <td>{value.name}</td>
               <td>{value.count}</td>
-              <td><button onClick={()=>{ dispatch(changePrdc(value.id)) }}>버튼</button></td>
+              <td><button onClick={()=>{ dispatch(changePrdc(value.id)) }}>+</button></td>
             </tr>
           )
         })}

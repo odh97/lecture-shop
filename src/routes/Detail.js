@@ -31,11 +31,6 @@ const Detail = (props)=>{
     }
   }
 
-
-  //Redux 이용
-  //store 장바구니 추가 기능
-  let storeAddData = {id : PropsData.id, name : PropsData.title, count : 0 };
-
   //내가 만든 타임 이벤트 박스
   // useEffect(()=>{
   //   setTimeout(()=>{
@@ -103,7 +98,7 @@ const Detail = (props)=>{
             <div>
               <input id="purchInput" placeholder= {"금액을 적어주세요"} type={"text"} onChange={(e)=>{setInputVal(e.target.value);}} />
             </div>
-            <button className="btn btn-danger" onClick={()=>{ dispatch(addPrdc(storeAddData)) }}>주문하기</button>
+            <button className="btn btn-danger" onClick={()=>{ dispatch(addPrdc( {id : PropsData.id, name : PropsData.title, count : 1} ))}}>주문하기</button>
           </div>
         </div>      
       </div>
@@ -125,7 +120,7 @@ const Detail = (props)=>{
         <Outlet></Outlet>
       </div>
       <div style={{marginTop : "150px"}}>
-        <Nav variant="tabs"  defaultActiveKey="link0">
+        <Nav variant="tabs" defaultActiveKey="link0">
           <Nav.Item>
             <Nav.Link eventKey="link0" onClick={()=>{setTabSw(0);}}>내용0</Nav.Link>
           </Nav.Item>

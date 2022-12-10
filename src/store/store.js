@@ -13,11 +13,15 @@ let product = createSlice({
     ],
     reducers : {
         changePrdc(data, action){
-          data.map((val, i)=>{
-            if(val.id === action.payload){
-             return val.count += 1;
-            }
-          })
+          //내가 만든 상품 추가 기능
+          // data.map((val, i)=>{
+          //   if(val.id === action.payload){
+          //    val.count++;
+          //   }
+          // })
+
+          let DataIndex = data.findIndex((e)=>{return e.id === action.payload});
+          data[DataIndex].count++
         },
         addPrdc(props, action){
 

@@ -8,6 +8,8 @@ import AxiosCp from './routes/AxiosCp';
 import StyledCp from './StyledCp';
 import CartCp from './routes/CartCp';
 import Effect from './Effect.js'
+import QuarterCP from './QuarterCP';
+import StoregCP from './StoregCP';
 import {DscrpTab, QandATab, ReviewTab} from './routes/DetailTabList';
 // export 사용
 import {a, b} from './data/test.js';
@@ -88,6 +90,8 @@ function App() {
               <Nav.Link onClick={()=>{navigate('/styled')}}>Styled</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/axios')}}>Axios</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/useEffect')}}>useEffect</Nav.Link>
+              <Nav.Link onClick={()=>{navigate('/quarter')}}>if문</Nav.Link>
+              <Nav.Link onClick={()=>{navigate('/storeg')}}>storeg</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -132,6 +136,8 @@ function App() {
         <Route path='/styled' element={<StyledCp />}/>
         <Route path='/axios' element={<AxiosCp />}/>
         <Route path='/useEffect' element={<Effect />}/>
+        <Route path='/quarter' element={<QuarterCP />}/>
+        <Route path='/storeg' element={<StoregCP />}/>
         <Route path='*' element={<><h1>404</h1><div>없는페이지에요~</div></>}/>
       </Routes>
     </div>
@@ -175,5 +181,6 @@ return(
   </div>
 );
 }
+
 
 export default App;
