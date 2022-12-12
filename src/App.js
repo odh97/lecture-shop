@@ -1,5 +1,5 @@
 // rfce 함수형
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Button,Navbar,Container,Nav } from 'react-bootstrap';
 import './App.css';
 import bannerBg from './img/bgimg.png';
@@ -29,6 +29,12 @@ function App() {
   let [stock, setStock] = useState([10,11,12]);
   let [loadingSw, setLoadingSw] = useState(false);
   let navigate = useNavigate();
+
+  // 로컬 데이터 저장 공간
+  useEffect(()=>{
+    localStorage.setItem('prdcId', JSON.stringify([]));
+  },[])
+  
   
   function sortFn(){
     let shoesCopy = [...shoes];
@@ -75,7 +81,6 @@ function App() {
   }
 
 
-
   return (
     <div className="App">
       <nav>
@@ -105,6 +110,7 @@ function App() {
         <Route path='/' element={
           <>
             {loadingSw === true ? <LoadingCp /> : null}
+            <RecentPrdcCP />
             <main>
               <div className='mainBg' style={{backgroundImage:'url('+bannerBg+')'}}></div>
               <section className='product-list'>
@@ -181,6 +187,28 @@ return(
   </div>
 );
 }
+
+
+
+
+
+function RecentPrdcCP() {
+  return (
+    <div className='recentPrdc'>
+      <h4>CART{/* props 갯수 */}</h4>
+      <table>
+        <tr>
+        <th>최근 본 상품</th>
+        </tr>
+        <tr>
+        <td>미국</td>
+        </tr>
+      </table>
+    </div>
+  )
+}
+
+
 
 
 export default App;

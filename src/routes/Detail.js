@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Nav } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
-import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
+import {Routes, Route, Link, useNavigate, Outlet, json} from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { Context1 } from "../App";
 import { addPrdc } from "../store/store";
@@ -19,10 +19,42 @@ const Detail = (props)=>{
 
   let ImgNm = Number(filterId)+1;
 
+  // 장바구니 로컬 데이터 저장
+  let storegArr = JSON.parse(localStorage.getItem('prdcId'));
+  
+  if( storegArr.findIndex((e)=>{return e === Number(filterId)}) === -1 ){
+    storegArr.unshift(Number(filterId));
+    localStorage.setItem('prdcId', JSON.stringify(storegArr));
+  }
+
+  if(storegArr.length >= 4){
+
+    for(let i=0; i < storegArr.length; i++){
+      if(storegArr.length >= 4){
+        console.log(storegArr);
+        storegArr.pop();
+        localStorage.setItem('prdcId', JSON.stringify(storegArr));
+      }
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //필터를 이용한 추출
   // let shoesFilter = props.shoes.filter(value => (value.id===Number(filterId)));
 
-  
   //내가 만든 데이터 필터
   let PropsData = [];
   for(let i=0; i < props.shoes.length; i++){
@@ -43,7 +75,7 @@ const Detail = (props)=>{
 
   //삼항 연산자를 이용한 타임 이벤트 박스
   useEffect(()=>{
-  let resetTime =  setTimeout(()=>{setSale(false);}, 2000);
+  let resetTime = setTimeout(()=>{setSale(false);}, 2000);
   return()=>{
     clearTimeout(resetTime);
   }
@@ -168,5 +200,7 @@ function TabContent({tabSw, props2}){
   }
   // return [<div>내용00</div>, <div>내용11</div>, <div>내용22</div>][tabSw]
 }
+
+
 
 export default Detail;

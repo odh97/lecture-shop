@@ -1,33 +1,7 @@
-import axios from 'axios'
 import React from 'react'
+import axios from 'axios'
 
 function AxiosCp() {
-
-axios.get('https://pre-onboarding-selection-task.shop/')
-.then((result)=>{
-  console.log(result.data);
-})
-.catch(()=>{
-  console.log("데이터 요청 실패 ㅋ");
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //post : 서버에 데이터를 보낼 수 있다.
 axios.post('/url', {name : 'value'})
 .then(()=>{
