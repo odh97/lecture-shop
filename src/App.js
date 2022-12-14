@@ -1,28 +1,38 @@
 // rfce 함수형
-import { createContext, useEffect, useState } from 'react';
-import { Button,Navbar,Container,Nav } from 'react-bootstrap';
+import { createContext, lazy, Suspense, useEffect, useState } from 'react';
+import { Button,Navbar,Container,Nav,Dropdown } from 'react-bootstrap';
 import './App.css';
 import bannerBg from './img/bgimg.png';
-import Detail from './routes/Detail.js';
 import AxiosCp from './routes/AxiosCp';
 import StyledCp from './StyledCp';
-import CartCp from './routes/CartCp';
 import Effect from './Effect.js'
 import QuarterCP from './QuarterCP';
 import StoregCP from './StoregCP';
+import RecentPrdcCP from './RecentPrdcCP';
+import QueryCP from './QueryCP';
 import {DscrpTab, QandATab, ReviewTab} from './routes/DetailTabList';
+
 // export 사용
 import {a, b} from './data/test.js';
 import 작명2 from './data/test2';
 import data from './data/data';
+
 // 라우터 사용법
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
+
 // axios 사용법
 import axios from 'axios';
+import { useQuery } from 'react-query';
+import { LazyAndSuspenseCP } from './LazyAndSuspenseCP';
 
 //state보관함
 export let Context1 = createContext();
 
+// lazy() 와 <Suspense>
+const Detail = lazy(()=>import('./routes/Detail.js'));
+const CartCp = lazy(()=>import('./routes/CartCp'));
+
+//컴포넌트
 function App() {
 
   let [shoes, setShoes] = useState(data);
@@ -30,11 +40,25 @@ function App() {
   let [loadingSw, setLoadingSw] = useState(false);
   let navigate = useNavigate();
 
-  // 로컬 데이터 저장 공간
+  //react-query 라이브러리 사용 (메신저, 거래소 등등에서 갱신이 자주 필요한 곳에서 사용)
+  let result = useQuery('resultQuery', ()=>
+    axios.get('https://codingapple1.github.io/userdata.json')
+    .then((obj)=>{
+      return obj.data
+    })
+  );
+
+  // 로컬 데이터 저장 공간 관리
   useEffect(()=>{
-    localStorage.setItem('prdcId', JSON.stringify([]));
-  },[])
-  
+    let arrCheck = localStorage.getItem('prdcId');
+
+    if(arrCheck === null){
+      localStorage.setItem('prdcId', JSON.stringify( [] ));
+      console.log("로컬 데이터 저장 공간 확보");
+    }else{
+      console.log("기존 로컬 데이터 자료를 사용합니다.");
+    }
+  }, [])
   
   function sortFn(){
     let shoesCopy = [...shoes];
@@ -86,18 +110,28 @@ function App() {
       <nav>
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Shop</Navbar.Brand>
+            <Navbar.Brand href="/">Shop</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link onClick={()=>{navigate('/')}}>Home</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/about')}}>About</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/detail/0')}}>Detail</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/event')}}>Event</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('/styled')}}>Styled</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('/axios')}}>Axios</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('/useEffect')}}>useEffect</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('/quarter')}}>if문</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('/storeg')}}>storeg</Nav.Link>
+
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">Learn List</Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={()=>{navigate('/styled')}}>Styled</Dropdown.Item>
+                  <Dropdown.Item onClick={()=>{navigate('/axios')}}>Axios</Dropdown.Item>
+                  <Dropdown.Item onClick={()=>{navigate('/useEffect')}}>useEffect</Dropdown.Item>
+                  <Dropdown.Item onClick={()=>{navigate('/quarter')}}>if문</Dropdown.Item>
+                  <Dropdown.Item onClick={()=>{navigate('/storeg')}}>storeg</Dropdown.Item>
+                  <Dropdown.Item onClick={()=>{navigate('/query')}}>react-query</Dropdown.Item>
+                  <Dropdown.Item onClick={()=>{navigate('/las')}}>Lazy & SuspenseCP</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Nav>
+            {/* react-query 라이브러리 사용 */}
+            <Nav className='ms-auto'>{result.isLoading ? '로딩중' : result.data.name}</Nav>
           </Container>
         </Navbar>
       </nav>
@@ -106,6 +140,7 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/detail/0">상세페이지</Link>
       </div>
+      <Suspense fallback={<div>로딩중</div>}>
       <Routes>
         <Route path='/' element={
           <>
@@ -125,13 +160,12 @@ function App() {
             <button className='cmnBtn' onClick={ajaxFn}>상품 더보기</button>
           </>
         } />
-          <Route path='/detail/:id' element={<Context1.Provider value={{stock, shoes}}> <Detail shoes={shoes} /> </Context1.Provider>}>
-            <Route path='cart' element={<CartCp/>} />
-
-            <Route path='dscrp' element={<DscrpTab/>}/>
-            <Route path='Q&ATab' element={<QandATab/>}/>
-            <Route path='reviewTab' element={<ReviewTab/>}/>
-          </Route>
+        <Route path='/detail/:id' element={<Context1.Provider value={{stock, shoes}}> <Detail shoes={shoes} /> </Context1.Provider>}>
+          <Route path='cart' element={<CartCp/>} />
+          <Route path='dscrp' element={<DscrpTab/>}/>
+          <Route path='Q&ATab' element={<QandATab/>}/>
+          <Route path='reviewTab' element={<ReviewTab/>}/>
+        </Route>
         <Route path='/about' element={<About />}>
           <Route path='member' element={<div>멤버임</div>}/>
         </Route>
@@ -144,8 +178,11 @@ function App() {
         <Route path='/useEffect' element={<Effect />}/>
         <Route path='/quarter' element={<QuarterCP />}/>
         <Route path='/storeg' element={<StoregCP />}/>
+        <Route path='/query' element={<QueryCP />}/>
+        <Route path='/las' element={<LazyAndSuspenseCP />}/>
         <Route path='*' element={<><h1>404</h1><div>없는페이지에요~</div></>}/>
       </Routes>
+      </Suspense>
     </div>
   );
 }
@@ -170,12 +207,12 @@ return(
 }
 
 function About(){
-  return(
-    <>
-      <h4>회사정보입니다.</h4>
-      <Outlet></Outlet>
-    </>
-  )
+return(
+  <>
+    <h4>회사정보입니다.</h4>
+    <Outlet></Outlet>
+  </>
+)
 }
 
 function Product(props){
@@ -187,28 +224,5 @@ return(
   </div>
 );
 }
-
-
-
-
-
-function RecentPrdcCP() {
-  return (
-    <div className='recentPrdc'>
-      <h4>CART{/* props 갯수 */}</h4>
-      <table>
-        <tr>
-        <th>최근 본 상품</th>
-        </tr>
-        <tr>
-        <td>미국</td>
-        </tr>
-      </table>
-    </div>
-  )
-}
-
-
-
 
 export default App;

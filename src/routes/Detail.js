@@ -20,37 +20,26 @@ const Detail = (props)=>{
   let ImgNm = Number(filterId)+1;
 
   // 장바구니 로컬 데이터 저장
-  let storegArr = JSON.parse(localStorage.getItem('prdcId'));
+  useEffect(()=>{
+    let storegArr = JSON.parse(localStorage.getItem('prdcId'));
   
-  if( storegArr.findIndex((e)=>{return e === Number(filterId)}) === -1 ){
-    storegArr.unshift(Number(filterId));
-    localStorage.setItem('prdcId', JSON.stringify(storegArr));
-  }
-
-  if(storegArr.length >= 4){
-
-    for(let i=0; i < storegArr.length; i++){
-      if(storegArr.length >= 4){
-        console.log(storegArr);
-        storegArr.pop();
-        localStorage.setItem('prdcId', JSON.stringify(storegArr));
-      }
+    if( storegArr.findIndex((e)=>{return e === Number(filterId)}) === -1 ){
+      storegArr.unshift(Number(filterId));
+      localStorage.setItem('prdcId', JSON.stringify(storegArr));
     }
+  
+    if(storegArr.length >= 4){
+  
+      for(let i=0; i < storegArr.length; i++){
+        if(storegArr.length >= 4){
+          console.log(storegArr);
+          storegArr.pop();
+          localStorage.setItem('prdcId', JSON.stringify(storegArr));
+        }
+      }
 
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+  }, [])
 
   //필터를 이용한 추출
   // let shoesFilter = props.shoes.filter(value => (value.id===Number(filterId)));
