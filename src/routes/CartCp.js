@@ -35,11 +35,11 @@ let dispatch = useDispatch();
 let stateRd =  useSelector((state)=>{ return state });
 let productRd =  useSelector( (data)=> data.product );
 
-//useMemo 사용법
-//useEffect 처럼 사용이 가능하다.
-//useEffect 와 useMemo의 차이
-  // useMemo   : render 시작하기 전에 실행
-  // useEffect : 컴포넌트 렌더링이 끝난 후 실행
+// useMemo 사용법
+// useEffect 처럼 사용이 가능하다.
+// useEffect 와 useMemo의 차이
+// useMemo   : 컴포넌트 렌더링 시작 전에 실행
+// useEffect : 컴포넌트 렌더링이 끝난 후 실행
 let result = useMemo(()=>{return Child2}, []);
 
 return (

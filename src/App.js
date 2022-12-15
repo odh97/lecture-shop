@@ -1,5 +1,5 @@
 // rfce 함수형
-import { createContext, lazy, Suspense, useEffect, useState } from 'react';
+import { createContext, lazy, Suspense, useEffect, useState, useTransition } from 'react';
 import { Button,Navbar,Container,Nav,Dropdown } from 'react-bootstrap';
 import './App.css';
 import bannerBg from './img/bgimg.png';
@@ -31,10 +31,10 @@ export let Context1 = createContext();
 // lazy() 와 <Suspense>
 const Detail = lazy(()=>import('./routes/Detail.js'));
 const CartCp = lazy(()=>import('./routes/CartCp'));
+const Transition = lazy(()=>import('./Transition'));
 
 //컴포넌트
 function App() {
-
   let [shoes, setShoes] = useState(data);
   let [stock, setStock] = useState([10,11,12]);
   let [loadingSw, setLoadingSw] = useState(false);
@@ -127,6 +127,7 @@ function App() {
                   <Dropdown.Item onClick={()=>{navigate('/storeg')}}>storeg</Dropdown.Item>
                   <Dropdown.Item onClick={()=>{navigate('/query')}}>react-query</Dropdown.Item>
                   <Dropdown.Item onClick={()=>{navigate('/las')}}>Lazy & SuspenseCP</Dropdown.Item>
+                  <Dropdown.Item onClick={()=>{navigate('/transition')}}>Transition</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>
@@ -180,6 +181,7 @@ function App() {
         <Route path='/storeg' element={<StoregCP />}/>
         <Route path='/query' element={<QueryCP />}/>
         <Route path='/las' element={<LazyAndSuspenseCP />}/>
+        <Route path='/transition' element={<Transition />}/>
         <Route path='*' element={<><h1>404</h1><div>없는페이지에요~</div></>}/>
       </Routes>
       </Suspense>
