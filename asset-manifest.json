@@ -1,16 +1,22 @@
 {
   "files": {
-    "main.css": "/lecture-shop/static/css/main.1e90ea0b.css",
-    "main.js": "/lecture-shop/static/js/main.f49e8c74.js",
+    "main.css": "/lecture-shop/static/css/main.0cde4f3c.css",
+    "main.js": "/lecture-shop/static/js/main.f5d5d897.js",
+    "static/js/768.f874bdf1.chunk.js": "/lecture-shop/static/js/768.f874bdf1.chunk.js",
+    "static/js/939.52d94ccb.chunk.js": "/lecture-shop/static/js/939.52d94ccb.chunk.js",
+    "static/js/363.672832f1.chunk.js": "/lecture-shop/static/js/363.672832f1.chunk.js",
     "static/js/787.23170c61.chunk.js": "/lecture-shop/static/js/787.23170c61.chunk.js",
     "static/media/bgimg.png": "/lecture-shop/static/media/bgimg.616f307c169b743ff920.png",
     "index.html": "/lecture-shop/index.html",
-    "main.1e90ea0b.css.map": "/lecture-shop/static/css/main.1e90ea0b.css.map",
-    "main.f49e8c74.js.map": "/lecture-shop/static/js/main.f49e8c74.js.map",
+    "main.0cde4f3c.css.map": "/lecture-shop/static/css/main.0cde4f3c.css.map",
+    "main.f5d5d897.js.map": "/lecture-shop/static/js/main.f5d5d897.js.map",
+    "768.f874bdf1.chunk.js.map": "/lecture-shop/static/js/768.f874bdf1.chunk.js.map",
+    "939.52d94ccb.chunk.js.map": "/lecture-shop/static/js/939.52d94ccb.chunk.js.map",
+    "363.672832f1.chunk.js.map": "/lecture-shop/static/js/363.672832f1.chunk.js.map",
     "787.23170c61.chunk.js.map": "/lecture-shop/static/js/787.23170c61.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1e90ea0b.css",
-    "static/js/main.f49e8c74.js"
+    "static/css/main.0cde4f3c.css",
+    "static/js/main.f5d5d897.js"
   ]
 }
