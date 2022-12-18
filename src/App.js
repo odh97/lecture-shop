@@ -10,6 +10,7 @@ import QuarterCP from './QuarterCP';
 import StoregCP from './StoregCP';
 import RecentPrdcCP from './RecentPrdcCP';
 import QueryCP from './QueryCP';
+import MemoCP from './routes/MemoCP';
 import {DscrpTab, QandATab, ReviewTab} from './routes/DetailTabList';
 
 // export 사용
@@ -128,6 +129,7 @@ function App() {
                   <Dropdown.Item onClick={()=>{navigate('/query')}}>react-query</Dropdown.Item>
                   <Dropdown.Item onClick={()=>{navigate('/las')}}>Lazy & SuspenseCP</Dropdown.Item>
                   <Dropdown.Item onClick={()=>{navigate('/transition')}}>Transition</Dropdown.Item>
+                  <Dropdown.Item onClick={()=>{navigate('/memo')}}>useMemo</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>
@@ -182,6 +184,7 @@ function App() {
         <Route path='/query' element={<QueryCP />}/>
         <Route path='/las' element={<LazyAndSuspenseCP />}/>
         <Route path='/transition' element={<Transition />}/>
+        <Route path='/memo' element={<MemoCP />}/>
         <Route path='*' element={<><h1>404</h1><div>없는페이지에요~</div></>}/>
       </Routes>
       </Suspense>
